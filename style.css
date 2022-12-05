@@ -74,3 +74,10 @@
         border: none;
     }
 }
+
+
+.btn-center{
+position: absolute;
+left: 500px;
+top: 300px;
+}

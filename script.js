@@ -16,6 +16,7 @@ if (window.ApplePaySession && ApplePaySession.supportsVersion(3) && ApplePaySess
     }).then(function (applePayInstance) {
         const button = document.getElementById("applePayButton")
         button.onclick = function(){
+          console.log("Clicked It BITCH!")
             var paymentRequest = applePayInstance.createPaymentRequest({
                 total: {
                   label: 'My Store',
@@ -71,11 +72,6 @@ if (window.ApplePaySession && ApplePaySession.supportsVersion(3) && ApplePaySess
               session.begin();
         };
     }).catch(function (err) {
-        
+        console.log(err)
     });
-}
-
-
-function NOW_PAY_WITH_APPLE_PAY() {
-
 }
