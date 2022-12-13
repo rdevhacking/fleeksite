@@ -1,14 +1,19 @@
 if (window.ApplePaySession && ApplePaySession.supportsVersion(3) && ApplePaySession.canMakePayments()) {
-    if (!window.ApplePaySession) {
-        console.error('This device does not support Apple Pay');
-    }
+  if (!window.ApplePaySession) {
+      console.error('This device does not support Apple Pay');
+  }
 
-    if (!ApplePaySession.canMakePayments()) {
-        console.error('This device is not capable of making Apple Pay payments');
-    }
+  if (!ApplePaySession.canMakePayments()) {
+      console.error('This device is not capable of making Apple Pay payments');
+  }
+
+  const clientToken = (await fetch({
+    method: "POST",
+    url: "https://applepayintegraionapiserver.azurewebsites.net/clientToken/user/anonymous"
+  }).then(x=>x.text()));
 
     braintree.client.create({
-        authorization: 'CLIENT_AUTHORIZATION'
+        authorization: clientToken
     }).then(function (clientInstance) {
         return braintree.applePay.create({
             client: clientInstance
